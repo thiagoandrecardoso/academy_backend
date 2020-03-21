@@ -2,21 +2,18 @@ package main.java.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "Lesson")
+@Table(name = "lesson")
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date dateLesson;
-    private String hour;
-    private int numberStudents;
-    private Double revenues;
-
-    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Student> students;
+    private String startTime;
+    private String endTime;
+    private float moneyCollected;
+    private int numberOfStudents;
 
     public Long getId() {
         return id;
@@ -26,7 +23,6 @@ public class Lesson {
         this.id = id;
     }
 
-    @Temporal(TemporalType.DATE)
     public Date getDateLesson() {
         return dateLesson;
     }
@@ -35,44 +31,35 @@ public class Lesson {
         this.dateLesson = dateLesson;
     }
 
-    public String getHour() {
-        return hour;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public int getNumberStudents() {
-        return numberStudents;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setNumberStudents(int numberStudents) {
-        this.numberStudents = numberStudents;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public float getMoneyCollected() {
+        return moneyCollected;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setMoneyCollected(float moneyCollected) {
+        this.moneyCollected = moneyCollected;
     }
 
-    public Double getRevenues() {
-        return revenues;
+    public int getNumberOfStudents() {
+        return numberOfStudents;
     }
 
-    public void setRevenues(Double revenues) {
-        this.revenues = revenues;
-    }
-
-    public void preUpdate() {
-        dateLesson = new Date();
-    }
-
-    public void prePersist() {
-        final Date current = new Date();
-        dateLesson = current;
+    public void setNumberOfStudents(int numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
     }
 }
