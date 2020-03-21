@@ -10,8 +10,15 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
+    @Column(name = "number_lesson_completed")
     private int numberLessonCompleted;
+
+    @Column(name = "paid_lesson]")
     private double paidLesson;
+
+    @ManyToOne
+    private Lesson lesson;
 
     public Long getId() {
         return id;
@@ -43,5 +50,13 @@ public class Student {
 
     public void setPaidLesson(double paidLesson) {
         this.paidLesson = paidLesson;
+    }
+
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 }

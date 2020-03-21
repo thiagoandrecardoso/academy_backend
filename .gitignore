@@ -2,3 +2,19 @@
 .idea/workspace.xml
 
 .idea/vcs.xml
+
+target/classes/META-INF/academy_backend.kotlin_module
+
+target/classes/main/java/main/Main.class
+
+target/classes/main/java/entity/Student.class
+
+target/classes/main/java/entity/Lesson.class
+
+target/classes/main/java/dao/LessonDao.class
+
+target/classes/main/java/dao/StudentDao.class
+
+target/classes/main/java/dao/LeasonDao.class
+
+.idea/inspectionProfiles/Project_Default.xml

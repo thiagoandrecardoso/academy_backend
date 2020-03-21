@@ -2,6 +2,7 @@ package main.java.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "lesson")
@@ -9,11 +10,25 @@ public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_lesson")
     private Date dateLesson;
-    private String startTime;
-    private String endTime;
+
+    @Temporal(TemporalType.TIME)
+    @Column(name = "start_time")
+    private Date startTime;
+
+    @Temporal(TemporalType.TIME)
+    @Column(name = "end_time")
+    private Date endTime;
+
     private float moneyCollected;
     private int numberOfStudents;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lesson")
+//    @JoinColumn(name = "lesson_id")
+    private List<Student> students;
 
     public Long getId() {
         return id;
@@ -31,19 +46,19 @@ public class Lesson {
         this.dateLesson = dateLesson;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
@@ -61,5 +76,13 @@ public class Lesson {
 
     public void setNumberOfStudents(int numberOfStudents) {
         this.numberOfStudents = numberOfStudents;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }
