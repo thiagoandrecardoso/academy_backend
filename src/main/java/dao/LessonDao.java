@@ -5,7 +5,7 @@ import main.java.entity.Lesson;
 
 import javax.persistence.EntityManager;
 
-public class LeasonDao {
+public class LessonDao {
 
     public Lesson save(Lesson lesson) {
         EntityManager entityManager = new ConnectionFactory().getConnection();
