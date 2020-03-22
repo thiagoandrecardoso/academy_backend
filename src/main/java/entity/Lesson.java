@@ -27,7 +27,6 @@ public class Lesson {
     private int numberOfStudents;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lesson")
-//    @JoinColumn(name = "lesson_id")
     private List<Student> students;
 
     public Long getId() {

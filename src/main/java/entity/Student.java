@@ -14,7 +14,7 @@ public class Student {
     @Column(name = "number_lesson_completed")
     private int numberLessonCompleted;
 
-    @Column(name = "paid_lesson]")
+    @Column(name = "paid_lesson")
     private double paidLesson;
 
     @ManyToOne

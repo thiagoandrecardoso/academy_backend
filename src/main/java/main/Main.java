@@ -41,11 +41,10 @@ public class Main {
         student.setLesson(lesson);
         student1.setLesson(lesson);
 
-        StudentDao studentDao = new StudentDao();
-        studentDao.save(student);
-
         LessonDao lessonDao = new LessonDao();
         lessonDao.save(lesson);
+
+        System.out.println("Aula " +  lesson.getId());
 
     }
 }
