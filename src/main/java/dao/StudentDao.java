@@ -1,24 +1,21 @@
 package main.java.dao;
 
-import main.java.connection.ConnectionFactory;
 import main.java.entity.Student;
 
-import javax.persistence.EntityManager;
+public class StudentDao implements SuperDAO<Student> {
 
-public class StudentDao {
+    @Override
+    public boolean save(Class<Student> entityType) {
+        return false;
+    }
 
-    public Student save(Student student) {
-        EntityManager entityManager = new ConnectionFactory().getConnection();
+    @Override
+    public boolean delete(Long id) {
+        return false;
+    }
 
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(student);
-            entityManager.getTransaction().commit();
-        } catch (Exception w) {
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
-        return student;
+    @Override
+    public Student search(Long id) {
+        return null;
     }
 }

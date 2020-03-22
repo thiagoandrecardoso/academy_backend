@@ -1,15 +1,11 @@
 package main.java.dao;
 
-import main.java.connection.ConnectionFactory;
 import main.java.entity.Lesson;
 
-import javax.persistence.EntityManager;
+public class LessonDao implements SuperDAO<Lesson> {
 
-public class LessonDao {
-
-    public Lesson save(Lesson lesson) {
-        EntityManager entityManager = new ConnectionFactory().getConnection();
-
+    @Override
+    public boolean save(Class<Lesson> lesson) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(lesson);
@@ -19,7 +15,34 @@ public class LessonDao {
         } finally {
             entityManager.close();
         }
-        return lesson;
+        return true;
     }
 
+    @Override
+    public boolean delete(Long id) {
+        try {
+            entityManager.getTransaction().begin();
+            Lesson lesson = entityManager.find(Lesson.class, id);
+            entityManager.remove(lesson);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
+        return true;
+    }
+
+    @Override
+    public Lesson search(Long id) {
+        Lesson lesson = null;
+        try {
+            lesson = entityManager.find(Lesson.class, id);
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
+        return lesson;
+    }
 }
