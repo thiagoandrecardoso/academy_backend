@@ -5,11 +5,9 @@ import main.java.entity.Student;
 
 public class Main {
     public static void main(String[] args) {
-        Student student = new Student();
-        student.setId(9l);
-        student.setName("Karen Sousa");
-
         StudentDao studentDao = new StudentDao();
+        Student student = studentDao.findById(9l);
+        student.setName("Karen Sousa");
         studentDao.update(student);
     }
 }

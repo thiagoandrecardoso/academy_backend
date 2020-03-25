@@ -2,6 +2,8 @@ package main.java.dao;
 
 import main.java.entity.Student;
 
+import java.sql.Struct;
+
 public class StudentDao implements SuperDAO<Student> {
 
     @Override
@@ -31,27 +33,22 @@ public class StudentDao implements SuperDAO<Student> {
             student = entityManager.find(Student.class, id);
         } catch (Exception e) {
             System.out.println("erro ao buscar por id\n" + e);
-        } finally {
-            entityManager.close();
         }
         return student;
     }
 
     @Override
     public Student update(Student student) {
-        try {
-            entityManager.getTransaction().begin();
-            if (student.getId() == null) {
-                entityManager.persist(student);
-            } else {
-                entityManager.merge(student);
-            }
+        entityManager.getTransaction().begin();
+        Student s = null;
+        try{
+            s = entityManager.merge(student);
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (Exception e){
             entityManager.getTransaction().rollback();
         } finally {
             entityManager.close();
         }
-        return student;
+        return s;
     }
 }
