@@ -18,3 +18,5 @@ target/classes/main/java/dao/StudentDao.class
 target/classes/main/java/dao/LeasonDao.class
 
 .idea/inspectionProfiles/Project_Default.xml
+
+target/classes/main/java/dao/SuperDAO.class

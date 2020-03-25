@@ -5,7 +5,7 @@ import main.java.entity.Lesson;
 public class LessonDao implements SuperDAO<Lesson> {
 
     @Override
-    public boolean save(Class<Lesson> lesson) {
+    public boolean save(Lesson lesson) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(lesson);
@@ -34,7 +34,7 @@ public class LessonDao implements SuperDAO<Lesson> {
     }
 
     @Override
-    public Lesson search(Long id) {
+    public Lesson findById(Long id) {
         Lesson lesson = null;
         try {
             lesson = entityManager.find(Lesson.class, id);
@@ -45,4 +45,11 @@ public class LessonDao implements SuperDAO<Lesson> {
         }
         return lesson;
     }
+
+    @Override
+    public Lesson update(Lesson entityType) {
+        return null;
+    }
+
+
 }
