@@ -2,7 +2,6 @@ package main.java.dao;
 
 import main.java.entity.Student;
 
-import java.sql.Struct;
 
 public class StudentDao implements SuperDAO<Student> {
 

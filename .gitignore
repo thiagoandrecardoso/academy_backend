@@ -20,3 +20,13 @@ target/classes/main/java/dao/LeasonDao.class
 .idea/inspectionProfiles/Project_Default.xml
 
 target/classes/main/java/dao/SuperDAO.class
+
+.idea/misc.xml
+
+target/academy_backend-1.0-SNAPSHOT.jar
+
+target/maven-archiver/pom.properties
+
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
