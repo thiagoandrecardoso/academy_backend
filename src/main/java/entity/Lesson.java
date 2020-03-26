@@ -26,7 +26,8 @@ public class Lesson {
     private float moneyCollected;
     private int numberOfStudents;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lesson")
+    // FetchType.EAGER para poder retornar toda a lista
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "lesson")
     private List<Student> students;
 
     public Long getId() {
