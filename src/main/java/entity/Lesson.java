@@ -5,17 +5,29 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Lesson")
+@Table(name = "lesson")
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date dateLesson;
-    private String hour;
-    private int numberStudents;
-    private Double revenues;
 
-    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_lesson")
+    private Date dateLesson;
+
+    @Temporal(TemporalType.TIME)
+    @Column(name = "start_time")
+    private Date startTime;
+
+    @Temporal(TemporalType.TIME)
+    @Column(name = "end_time")
+    private Date endTime;
+
+    private float moneyCollected;
+    private int numberOfStudents;
+
+    // FetchType.EAGER para poder retornar toda a lista
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "lesson")
     private List<Student> students;
 
     public Long getId() {
@@ -26,7 +38,6 @@ public class Lesson {
         this.id = id;
     }
 
-    @Temporal(TemporalType.DATE)
     public Date getDateLesson() {
         return dateLesson;
     }
@@ -35,20 +46,36 @@ public class Lesson {
         this.dateLesson = dateLesson;
     }
 
-    public String getHour() {
-        return hour;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-    public int getNumberStudents() {
-        return numberStudents;
+    public Date getEndTime() {
+        return endTime;
     }
 
-    public void setNumberStudents(int numberStudents) {
-        this.numberStudents = numberStudents;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public float getMoneyCollected() {
+        return moneyCollected;
+    }
+
+    public void setMoneyCollected(float moneyCollected) {
+        this.moneyCollected = moneyCollected;
+    }
+
+    public int getNumberOfStudents() {
+        return numberOfStudents;
+    }
+
+    public void setNumberOfStudents(int numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
     }
 
     public List<Student> getStudents() {
@@ -57,22 +84,5 @@ public class Lesson {
 
     public void setStudents(List<Student> students) {
         this.students = students;
-    }
-
-    public Double getRevenues() {
-        return revenues;
-    }
-
-    public void setRevenues(Double revenues) {
-        this.revenues = revenues;
-    }
-
-    public void preUpdate() {
-        dateLesson = new Date();
-    }
-
-    public void prePersist() {
-        final Date current = new Date();
-        dateLesson = current;
     }
 }
